@@ -1,0 +1,41 @@
+# Enter your code here. Read input from STDIN. Print output to STDOUT
+sMax, tMax = 0
+sA = []
+
+def swap(ov, nw)
+    temp = ov
+    ov = ov + nw
+    if(temp > ov)
+        ov = temp
+    end
+    return ov
+end
+def compute(inp)
+    sMax = 0
+    tMax = 0
+    sA = []
+    for x in 0 ... inp.length
+        #swap
+        tMax = swap(tMax, inp[x])
+        slMax = 0
+        temp2 = 0
+        for y in x ... inp.length 
+            temp2 = temp2 + inp[y]
+            if(slMax < temp2)
+                slMax = temp2
+            end
+        end
+        sA[x] = slMax;
+        if(sMax < slMax)
+            sMax = slMax
+        end
+    end
+     print "#{sMax} #{tMax}\n"
+end
+
+tc = gets.chomp.to_i
+for c in 0...tc
+    cnum = gets.chomp.to_i   
+    inps = gets.chomp.split(" ").map(&:to_i)
+    compute(inps)
+end
